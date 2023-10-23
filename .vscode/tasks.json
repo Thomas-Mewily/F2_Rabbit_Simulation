@@ -1,0 +1,47 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C++ with gcc. build exe",
+            "command": "C:\\mingw64\\bin\\gcc.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-O0",
+                "-DIS_IN_DEBUG=1", 
+                "-DTRACK_MEMORY=1",
+                "-g",
+                //"-save-temps",
+                "${workspaceFolder}/src/betterCPP/*.c*",
+                "${workspaceFolder}/src/betterCPP/core/*.c*",
+                "${workspaceFolder}/src/betterCPP/low_level/*.c*",
+                "${workspaceFolder}/src/betterCPP/math/*.c*",
+                "${workspaceFolder}/src/betterCPP/text/*.c*",
+                "${workspaceFolder}/src/betterCPP/simulation/*.c*",
+                "${workspaceFolder}/src/betterCPP/mersenne_twister/*.c*",
+
+                //"${workspaceFolder}/src/extenC/*.c*",
+
+                "${workspaceFolder}/src/*.c*",
+                "-o",
+                "${workspaceFolder}/bin/test.exe",
+                "-Wall",
+                "-Wextra",
+                "-lstdc++", // for gcc
+                "-Wcomment",
+                "-Wno-unknown-pragmas"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "Tâche générée par le débogueur.",
+            "presentation": {
+                "clear": true
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
