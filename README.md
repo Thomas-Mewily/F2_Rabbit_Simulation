@@ -105,8 +105,5 @@ année 14, 1809644                          couples de lapins
 année 15, 4412327                          couples de lapins
 année 19, 156157437                        couples de lapins
 année 20, 380013417                        couples de lapins
-<<<<<<< HEAD
-```
-=======
-```
->>>>>>> 8df08209e0e68fc27c2df378941a8a4cd5a782ce
+
+memory : 0 active malloc
