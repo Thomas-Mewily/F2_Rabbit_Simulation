@@ -13,7 +13,7 @@ f32 taux_de_survie(int mois)
     if(mois < majorite_sexuel){ return 0.35f; }
     if(mois <= 10 * mois_par_an){ return 0.60f; }
 
-    float proba_survie = 0.60f - 0.1* mois/mois_par_an;
+    float proba_survie = 0.60f - 0.1* (mois-10 * mois_par_an)/mois_par_an;
     return proba_survie < 0 ? 0 /* hope that life was good for you budy*/ : proba_survie; 
 }
 struct rabbits
