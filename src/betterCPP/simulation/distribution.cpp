@@ -1,6 +1,7 @@
 
 #include "__base__.hpp"
 
+distribution::distribution(){}
 
 fmax distribution::idx_to_val(usize idx)
 {
@@ -15,10 +16,10 @@ usize distribution::val_to_idx(fmax val)
 fmax distribution::get_min() { return idx_to_val(0); }
 fmax distribution::get_max() { return idx_to_val(values.length()); }
 
-distribution::distribution(u32 mini, u32 maxi, fmax step)
+distribution::distribution(u64 mini, u64 maxi, fmax step)
 {
     offset = mini;
-    u32 precision = (maxi-mini)/step;
+    u64 precision = (maxi-mini)/step;
     values = array<usize>(precision);
     foreach_idx(i, values){ values[i] = 0; }
     this->step = step;
@@ -31,10 +32,11 @@ void distribution::inc(fmax val, fmax avg)
 {
     unused(avg);
     usize idx = val_to_idx(val);
-    if(idx > values.length()){ return; }
+    if(idx >= values.length()){ return; }
     //check(values[idx] == 0);
-    maxi = max<usize>(maxi, ++values[idx]);
-    nb += 1;
+    values[idx]++;
+    maxi = max<usize>(maxi, values[idx]);
+    nb++;
 }
 
 void distribution::drop()
@@ -69,6 +71,9 @@ void distribution::fprint_latex_data(file* f)
 {
     foreach_idx(i, values)
     {
-        fprintf(f, "(%7.4" fmax_format ", %6" fmax_format ") %% %" usize_format " repetitions\n", idx_to_val(i), ((fmax)values[i]*(fmax)100)/(fmax)nb, nb);
+        if(values[i] != 0 || i == 0)
+        {
+            fprintf(f, "(%7.4" fmax_format ", %6" fmax_format ") %% %" usize_format " repetitions\n", idx_to_val(i), ((fmax)values[i]*(fmax)100)/(fmax)nb, nb);
+        }
     }
 }

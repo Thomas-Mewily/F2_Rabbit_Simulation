@@ -1,0 +1,144 @@
+\begin{figure}[H]
+\centering
+  \begin{tikzpicture}    \begin{axis}[
+      width=\linewidth,
+      grid=major,
+      %xmin=0,
+      %xmax=100,
+      xlabel=nombre de lapin,
+      ylabel=pourcentage de chance,
+      legend pos=north west,
+    ]
+      \addplot[color=blue, mark=+] coordinates{
+( 0.0000, 0.000000) % 199995 repetitions
+(113.1875, 0.002000) % 199995 repetitions
+(169.7812, 0.001000) % 199995 repetitions
+(226.3750, 0.004500) % 199995 repetitions
+(282.9688, 0.001500) % 199995 repetitions
+(339.5625, 0.004500) % 199995 repetitions
+(396.1562, 0.007500) % 199995 repetitions
+(452.7500, 0.005500) % 199995 repetitions
+(509.3438, 0.013000) % 199995 repetitions
+(565.9375, 0.021501) % 199995 repetitions
+(622.5312, 0.027001) % 199995 repetitions
+(679.1250, 0.028501) % 199995 repetitions
+(735.7188, 0.045001) % 199995 repetitions
+(792.3125, 0.050501) % 199995 repetitions
+(848.9062, 0.076002) % 199995 repetitions
+(905.5000, 0.082502) % 199995 repetitions
+(962.0938, 0.100002) % 199995 repetitions
+(1018.6875, 0.115503) % 199995 repetitions
+(1075.2812, 0.163504) % 199995 repetitions
+(1131.8750, 0.177004) % 199995 repetitions
+(1188.4688, 0.247006) % 199995 repetitions
+(1245.0625, 0.254006) % 199995 repetitions
+(1301.6562, 0.305008) % 199995 repetitions
+(1358.2500, 0.366009) % 199995 repetitions
+(1414.8438, 0.414010) % 199995 repetitions
+(1471.4375, 0.474012) % 199995 repetitions
+(1528.0312, 0.560014) % 199995 repetitions
+(1584.6250, 0.619015) % 199995 repetitions
+(1641.2188, 0.727518) % 199995 repetitions
+(1697.8125, 0.809020) % 199995 repetitions
+(1754.4062, 0.872522) % 199995 repetitions
+(1811.0000, 0.955524) % 199995 repetitions
+(1867.5938, 1.062527) % 199995 repetitions
+(1924.1875, 1.129528) % 199995 repetitions
+(1980.7812, 1.186530) % 199995 repetitions
+(2037.3750, 1.294532) % 199995 repetitions
+(2093.9688, 1.380034) % 199995 repetitions
+(2150.5625, 1.466537) % 199995 repetitions
+(2207.1562, 1.488037) % 199995 repetitions
+(2263.7500, 1.623541) % 199995 repetitions
+(2320.3438, 1.738043) % 199995 repetitions
+(2376.9375, 1.794545) % 199995 repetitions
+(2433.5312, 1.941549) % 199995 repetitions
+(2490.1250, 2.048051) % 199995 repetitions
+(2546.7188, 2.144554) % 199995 repetitions
+(2603.3125, 2.143054) % 199995 repetitions
+(2659.9062, 2.269057) % 199995 repetitions
+(2716.5000, 2.393560) % 199995 repetitions
+(2773.0938, 2.404560) % 199995 repetitions
+(2829.6875, 2.455061) % 199995 repetitions
+(2886.2812, 2.454061) % 199995 repetitions
+(2942.8750, 2.512063) % 199995 repetitions
+(2999.4688, 2.481062) % 199995 repetitions
+(3056.0625, 2.560064) % 199995 repetitions
+(3112.6562, 2.557564) % 199995 repetitions
+(3169.2500, 2.473062) % 199995 repetitions
+(3225.8438, 2.544064) % 199995 repetitions
+(3282.4375, 2.470562) % 199995 repetitions
+(3339.0312, 2.322058) % 199995 repetitions
+(3395.6250, 2.370559) % 199995 repetitions
+(3452.2188, 2.252056) % 199995 repetitions
+(3508.8125, 2.164054) % 199995 repetitions
+(3565.4062, 2.119553) % 199995 repetitions
+(3622.0000, 2.056051) % 199995 repetitions
+(3678.5938, 1.978049) % 199995 repetitions
+(3735.1875, 1.916048) % 199995 repetitions
+(3791.7812, 1.853046) % 199995 repetitions
+(3848.3750, 1.725543) % 199995 repetitions
+(3904.9688, 1.687042) % 199995 repetitions
+(3961.5625, 1.556539) % 199995 repetitions
+(4018.1562, 1.438036) % 199995 repetitions
+(4074.7500, 1.387535) % 199995 repetitions
+(4131.3438, 1.261532) % 199995 repetitions
+(4187.9375, 1.145529) % 199995 repetitions
+(4244.5312, 1.092027) % 199995 repetitions
+(4301.1250, 1.010025) % 199995 repetitions
+(4357.7188, 0.938523) % 199995 repetitions
+(4414.3125, 0.833521) % 199995 repetitions
+(4470.9062, 0.767519) % 199995 repetitions
+(4527.5000, 0.681017) % 199995 repetitions
+(4584.0938, 0.634016) % 199995 repetitions
+(4640.6875, 0.578514) % 199995 repetitions
+(4697.2812, 0.498012) % 199995 repetitions
+(4753.8750, 0.465512) % 199995 repetitions
+(4810.4688, 0.429011) % 199995 repetitions
+(4867.0625, 0.391010) % 199995 repetitions
+(4923.6562, 0.342009) % 199995 repetitions
+(4980.2500, 0.311008) % 199995 repetitions
+(5036.8438, 0.287507) % 199995 repetitions
+(5093.4375, 0.241506) % 199995 repetitions
+(5150.0312, 0.220506) % 199995 repetitions
+(5206.6250, 0.200505) % 199995 repetitions
+(5263.2188, 0.194005) % 199995 repetitions
+(5319.8125, 0.162504) % 199995 repetitions
+(5376.4062, 0.122003) % 199995 repetitions
+(5433.0000, 0.105503) % 199995 repetitions
+(5489.5938, 0.093502) % 199995 repetitions
+(5546.1875, 0.077002) % 199995 repetitions
+(5602.7812, 0.067502) % 199995 repetitions
+(5659.3750, 0.067002) % 199995 repetitions
+(5715.9688, 0.059501) % 199995 repetitions
+(5772.5625, 0.057001) % 199995 repetitions
+(5829.1562, 0.045501) % 199995 repetitions
+(5885.7500, 0.027001) % 199995 repetitions
+(5942.3438, 0.037001) % 199995 repetitions
+(5998.9375, 0.032001) % 199995 repetitions
+(6055.5312, 0.024001) % 199995 repetitions
+(6112.1250, 0.021001) % 199995 repetitions
+(6168.7188, 0.022001) % 199995 repetitions
+(6225.3125, 0.014500) % 199995 repetitions
+(6281.9062, 0.010000) % 199995 repetitions
+(6338.5000, 0.013000) % 199995 repetitions
+(6395.0938, 0.009000) % 199995 repetitions
+(6451.6875, 0.008000) % 199995 repetitions
+(6508.2812, 0.006500) % 199995 repetitions
+(6564.8750, 0.004500) % 199995 repetitions
+(6621.4688, 0.004000) % 199995 repetitions
+(6678.0625, 0.002000) % 199995 repetitions
+(6734.6562, 0.002000) % 199995 repetitions
+(6791.2500, 0.003500) % 199995 repetitions
+(6847.8438, 0.001000) % 199995 repetitions
+(6904.4375, 0.001500) % 199995 repetitions
+(6961.0312, 0.002000) % 199995 repetitions
+(7017.6250, 0.001000) % 199995 repetitions
+(7074.2188, 0.000500) % 199995 repetitions
+(7130.8125, 0.000500) % 199995 repetitions
+(7187.4062, 0.001500) % 199995 repetitions
+      };
+    \end{axis}
+  \end{tikzpicture}
+  \caption{nombre de lapin au bout de 7 années (200000 simulations)}
+\end{figure}

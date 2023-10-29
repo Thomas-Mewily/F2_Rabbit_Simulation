@@ -4,6 +4,9 @@
 #define majorite_sexuel 8
 #define duree_vie_max (15*mois_par_an)
 
+// paramètres variables pour la qualité de la simulation
+// + élévé, c'est mieux mais ça prend plus de temps
+// - élevé, c'est moins précis, mais plus rapide
 #define portee_max_simule_par_mois            10000
 #define nb_porte_max_simule_par_an_et_par_age 10000
 #define max_survie_simule_par_mois            10000
@@ -184,6 +187,79 @@ void simuler_x_annees(rabbits* r, int x)
     }
 }
 
+void make_latex()
+{
+    #define max_annee 20
+    #define d_size max_annee
+    distribution d[d_size];
+
+    rabbits r = initialiser_lapins(5);
+    repeat(i, d_size)
+    {
+        simuler_annee(&r);
+        usize maxi = nombre_couple(&r)/10*10*(2.1f);
+        d[i] = distribution(0, maxi, ((float)maxi)/128.0);
+    }
+
+    int nb_simulation = 200000;
+    repeat(i, nb_simulation)
+    {
+        r = initialiser_lapins(5);
+        repeat(j, max_annee)
+        {
+            simuler_annee(&r);
+            d[j].inc(nombre_couple(&r));
+        }
+        if(i % 100 == 0)
+        {
+            printf("simu # %" usize_format " done\n", i);
+        }
+    }
+
+    repeat(i, d_size)
+    {
+        char tmp [300];
+        tmp[sprintf(tmp, "result/annee_%i.txt", (int)i+1)] = '\0';
+        file* f = fopen(tmp, "w+");
+        check(f != null);
+        latex_file_figure_begin(f, "nombre de lapin", "pourcentage de chance");
+        latex_file_figure_plot_begin(f);
+        d[i].fprint_latex_data(f);
+        latex_file_figure_plot_end(f);
+
+        tmp[sprintf(tmp, "nombre de lapin au bout de %i années", (int)i+1)] = '\0';
+        latex_file_figure_end(f, nb_simulation, tmp);
+    }
+}
+
+void make_latex2()
+{
+    file* f = fopen("result/total.txt", "w+");
+    check(f != null);
+    latex_file_figure_begin(f, "année", "nombre de lapins");
+
+    int nbSimulation = 100;
+    repeat(i, nbSimulation)
+    {
+        rabbits r = initialiser_lapins(5);
+        latex_file_figure_plot_begin(f);
+
+        repeat(annee, 11)
+        {
+            fprintf(f, "(%i, %i) ", (int)annee, (int)nombre_couple(&r));
+            simuler_annee(&r);
+        }
+        fprintf(f, "\n");
+        latex_file_figure_plot_end(f);
+
+        printf("done %i\n", (int)i);
+
+    }
+    latex_file_figure_end(f, nbSimulation, "Évolution de la population de lapin");
+    fclose(f);
+}
+
+
 int main(int argc, char const* argv[])
 {
     unused(argc);
@@ -196,16 +272,16 @@ int main(int argc, char const* argv[])
     u32 init[4]={0x123, 0x234, 0x345, 0x456}, length=4;
     mt_init_by_array(init, length);
 
-    int max_annee = 20;
+    //make_latex();
+    //make_latex2();
 
     repeat(i, 3)
     {
         rabbits r = initialiser_lapins(5);
-        simuler_x_annees(&r, max_annee);
+        simuler_x_annees(&r, 20);
         printf("\n");
     }
 
-    
     only_in_debug(memory_printf_final());
     only_in_release(printf("fin\n"));
     return EXIT_SUCCESS;

@@ -7,7 +7,7 @@ struct distribution
 {
     array<usize> values;
     usize nb;
-    i32 offset;
+    i64 offset;
     fmax step;
     fmax sum;
     usize maxi;
@@ -18,7 +18,8 @@ struct distribution
     fmax get_min();
     fmax get_max();
 
-    distribution(u32 mini, u32 maxi, fmax step = 1);
+    distribution();
+    distribution(u64 mini, u64 maxi, fmax step = 1);
 
     void drop();
 

@@ -1,0 +1,77 @@
+\begin{figure}[H]
+\centering
+  \begin{tikzpicture}    \begin{axis}[
+      width=\linewidth,
+      grid=major,
+      %xmin=0,
+      %xmax=100,
+      xlabel=nombre de lapin,
+      ylabel=pourcentage de chance,
+      legend pos=north west,
+    ]
+      \addplot[color=blue, mark=+] coordinates{
+( 0.0000, 0.000000) % 198702 repetitions
+( 2.9062, 0.000503) % 198702 repetitions
+( 3.8750, 0.001510) % 198702 repetitions
+( 4.8438, 0.004529) % 198702 repetitions
+( 5.8125, 0.012078) % 198702 repetitions
+( 6.7812, 0.018118) % 198702 repetitions
+( 7.7500, 0.030699) % 198702 repetitions
+( 8.7188, 0.044791) % 198702 repetitions
+( 9.6875, 0.080019) % 198702 repetitions
+(10.6562, 0.097634) % 198702 repetitions
+(11.6250, 0.131856) % 198702 repetitions
+(12.5938, 0.190235) % 198702 repetitions
+(13.5625, 0.214895) % 198702 repetitions
+(14.5312, 0.277803) % 198702 repetitions
+(15.9844, 0.376443) % 198702 repetitions
+(16.9531, 0.473070) % 198702 repetitions
+(17.9219, 0.606939) % 198702 repetitions
+(18.8906, 0.745840) % 198702 repetitions
+(19.8594, 0.882226) % 198702 repetitions
+(20.8281, 1.099133) % 198702 repetitions
+(21.7969, 1.326610) % 198702 repetitions
+(22.7656, 1.522380) % 198702 repetitions
+(23.7344, 1.761935) % 198702 repetitions
+(24.7031, 2.015078) % 198702 repetitions
+(25.6719, 2.273757) % 198702 repetitions
+(26.6406, 2.590311) % 198702 repetitions
+(27.6094, 2.865598) % 198702 repetitions
+(28.5781, 3.125786) % 198702 repetitions
+(29.5469, 3.436805) % 198702 repetitions
+(31.0000, 3.594831) % 198702 repetitions
+(31.9688, 3.767451) % 198702 repetitions
+(32.9375, 3.901823) % 198702 repetitions
+(33.9062, 4.067398) % 198702 repetitions
+(34.8750, 4.148927) % 198702 repetitions
+(35.8438, 4.187175) % 198702 repetitions
+(36.8125, 4.143894) % 198702 repetitions
+(37.7812, 4.143894) % 198702 repetitions
+(38.7500, 4.057332) % 198702 repetitions
+(39.7188, 3.858039) % 198702 repetitions
+(40.6875, 3.730209) % 198702 repetitions
+(41.6562, 3.506256) % 198702 repetitions
+(42.6250, 3.305956) % 198702 repetitions
+(43.5938, 3.011545) % 198702 repetitions
+(44.5625, 2.818291) % 198702 repetitions
+(45.5312, 2.573200) % 198702 repetitions
+(46.9844, 2.293887) % 198702 repetitions
+(47.9531, 2.025143) % 198702 repetitions
+(48.9219, 1.761935) % 198702 repetitions
+(49.8906, 1.566668) % 198702 repetitions
+(50.8594, 1.359322) % 198702 repetitions
+(51.8281, 1.165061) % 198702 repetitions
+(52.7969, 1.054846) % 198702 repetitions
+(53.7656, 0.839951) % 198702 repetitions
+(54.7344, 0.735775) % 198702 repetitions
+(55.7031, 0.558122) % 198702 repetitions
+(56.6719, 0.463005) % 198702 repetitions
+(57.6406, 0.388018) % 198702 repetitions
+(58.6094, 0.312025) % 198702 repetitions
+(59.5781, 0.259182) % 198702 repetitions
+(60.5469, 0.194261) % 198702 repetitions
+      };
+    \end{axis}
+  \end{tikzpicture}
+  \caption{nombre de lapin au bout de 2 années (200000 simulations)}
+\end{figure}

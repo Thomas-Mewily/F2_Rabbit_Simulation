@@ -1,0 +1,43 @@
+\begin{figure}[H]
+\centering
+  \begin{tikzpicture}    \begin{axis}[
+      width=\linewidth,
+      grid=major,
+      %xmin=0,
+      %xmax=100,
+      xlabel=nombre de lapin,
+      ylabel=pourcentage de chance,
+      legend pos=north west,
+    ]
+      \addplot[color=blue, mark=+] coordinates{
+( 0.0000, 0.000000) % 200000 repetitions
+( 6.8906, 0.001500) % 200000 repetitions
+( 7.8750, 0.005000) % 200000 repetitions
+( 8.8594, 0.021500) % 200000 repetitions
+( 9.8438, 0.067000) % 200000 repetitions
+(10.8281, 0.224500) % 200000 repetitions
+(11.8125, 0.594500) % 200000 repetitions
+(12.7969, 1.328000) % 200000 repetitions
+(13.7812, 2.665000) % 200000 repetitions
+(14.7656, 4.678500) % 200000 repetitions
+(15.7500, 7.254000) % 200000 repetitions
+(16.7344, 10.200500) % 200000 repetitions
+(17.7188, 12.424500) % 200000 repetitions
+(18.7031, 13.664000) % 200000 repetitions
+(19.6875, 13.409500) % 200000 repetitions
+(21.0000, 11.562000) % 200000 repetitions
+(21.9844, 8.959000) % 200000 repetitions
+(22.9688, 6.096500) % 200000 repetitions
+(23.9531, 3.666000) % 200000 repetitions
+(24.9375, 1.897000) % 200000 repetitions
+(25.9219, 0.840500) % 200000 repetitions
+(26.9062, 0.312000) % 200000 repetitions
+(27.8906, 0.097500) % 200000 repetitions
+(28.8750, 0.024500) % 200000 repetitions
+(29.8594, 0.006000) % 200000 repetitions
+(30.8438, 0.001000) % 200000 repetitions
+      };
+    \end{axis}
+  \end{tikzpicture}
+  \caption{nombre de lapin au bout de 1 années (200000 simulations)}
+\end{figure}
