@@ -4,27 +4,33 @@
 #define majorite_sexuel 8
 #define duree_vie_max (15*mois_par_an)
 
-#define portee_max_simule_par_mois            100000
-#define nb_porte_max_simule_par_an_et_par_age 100000
-#define max_survie_simule_par_mois            100000
+#define portee_max_simule_par_mois            10000
+#define nb_porte_max_simule_par_an_et_par_age 10000
+#define max_survie_simule_par_mois            10000
 
-f32 taux_de_survie(int mois)
+f32 taux_de_survie_annuel(int mois)
 {
-    if(mois < majorite_sexuel){ return 0.35f; }
-    if(mois <= 10 * mois_par_an){ return 0.60f; }
+    if(mois < majorite_sexuel) 
+    { 
+        // penser à bien ramener la taux de survie qui 
+        // est sur l'année sur les 8 mois de l'enfance
+        // pour avoir 35 % de survie par AN en tant que lapereaux
+        return 0.35f * mois_par_an / (float)majorite_sexuel;
+    }
+    if(mois <= 10 * mois_par_an) { return 0.60f; }
 
-    float proba_survie = 0.60f - 0.1* (mois-10 * mois_par_an)/mois_par_an;
+    float proba_survie = 0.60f - 0.1* (mois - 10 * mois_par_an) / mois_par_an;
     return proba_survie < 0 ? 0 /* hope that life was good for you budy*/ : proba_survie; 
 }
 struct rabbits
 {
     int annee;
 
-    #define max_nb_couple duree_vie_max
-    umax nb_couple[duree_vie_max];
+    #define taille_nb_couple duree_vie_max
+    umax nb_couple[taille_nb_couple];
 
-    #define max_nb_porte_par_mois mois_par_an
-    umax nb_porte_ce_mois[mois_par_an];
+    #define taille_nb_porte_par_mois mois_par_an
+    umax nb_porte_ce_mois[taille_nb_porte_par_mois];
 };
 
 rabbits initialiser_lapins(int nb_adult_couple)
@@ -32,8 +38,8 @@ rabbits initialiser_lapins(int nb_adult_couple)
     rabbits r;
     r.annee = 0;
 
-    repeat(i, max_nb_couple) { r.nb_couple[i] = 0; }
-    repeat(i, max_nb_porte_par_mois) { r.nb_porte_ce_mois[i] = 0; }
+    repeat(i, taille_nb_couple) { r.nb_couple[i] = 0; }
+    repeat(i, taille_nb_porte_par_mois) { r.nb_porte_ce_mois[i] = 0; }
 
     r.nb_couple[majorite_sexuel] += nb_adult_couple;
     return r;
@@ -42,7 +48,7 @@ rabbits initialiser_lapins(int nb_adult_couple)
 umax nombre_couple(rabbits* r)
 {
     umax s = 0;
-    repeat(i, max_nb_couple)
+    repeat(i, taille_nb_couple)
     {
         s +=  r->nb_couple[i];
     }
@@ -52,14 +58,14 @@ umax nombre_couple(rabbits* r)
 // Tout les lapins vieillissent d'un mois
 void vieillir_un_mois(rabbits* r)
 {
-    repeat_reverse(mois, max_nb_couple-1)
+    repeat_reverse(mois, taille_nb_couple-1)
     {
         r->nb_couple[mois+1] = r->nb_couple[mois];
     }
     r->nb_couple[0] = 0; // 0 "nouveau" couple de 0 mois
 }
 
-void gerer_les_portees(rabbits* r, int mois)
+void simuler_les_portees_du_mois(rabbits* r, int mois)
 {
     #define portee_min_naissance 3
     #define portee_max_naissance 6
@@ -81,7 +87,8 @@ void gerer_les_portees(rabbits* r, int mois)
         nb_lapin *= (nb_porte_ce_mois/(fmax)portee_max_simule_par_mois);
     }
     
-    umax nb_couple = nb_lapin / 2; // 50% boy, 50% girl
+    umax nb_couple = nb_lapin / 2; // 50% male, 50% femelle
+    nb_couple *= 0.35; // mortalité infantile
     r->nb_couple[0] += nb_couple;
 }
 
@@ -128,14 +135,12 @@ void plannifier_les_futurs_portees(rabbits* r)
     }
 }
 
-void appliquer_taux_de_survie_annuel(rabbits* r)
+void appliquer_taux_de_survie_par_mois(rabbits* r)
 {
-    repeat(mois, max_nb_couple)
+    repeat(mois, taille_nb_couple)
     {
         umax nb_couple = r->nb_couple[mois];
-        f32 taux_survie = taux_de_survie(mois);
-
-
+        f32 taux_survie = powf(taux_de_survie_annuel(mois), 1.0/mois_par_an);
 
         usize max_survie_simule = min<usize>(max_survie_simule_par_mois, nb_couple);
         umax nb_couple_vivant = 0;
@@ -149,20 +154,19 @@ void appliquer_taux_de_survie_annuel(rabbits* r)
         {
             nb_couple_vivant *= (nb_couple/(fmax)max_survie_simule_par_mois);
         }
-        //nb_couple_vivant = nb_couple * taux_de_survie(mois);
         r->nb_couple[mois] = nb_couple_vivant;
     }
 }
 
 void simuler_annee(rabbits* r)
 {
-    appliquer_taux_de_survie_annuel(r);
     plannifier_les_futurs_portees(r);
 
     repeat(mois, mois_par_an)
     {
+        appliquer_taux_de_survie_par_mois(r);
         vieillir_un_mois(r);
-        gerer_les_portees(r, mois);
+        simuler_les_portees_du_mois(r, mois);
     }
 
     r->annee++;
@@ -170,12 +174,13 @@ void simuler_annee(rabbits* r)
 
 void simuler_x_annees(rabbits* r, int x)
 {
-    goto middle; // to make the weird loop
+    goto middle; // pour faire la boucle qui commence au milieu
     while(r->annee < x)
     {
         simuler_annee(r);
         middle:
         printf("année %2i, %-32" umax_format " couples de lapins\n", r->annee, nombre_couple(r));
+        //printf(" %2i & %-32" umax_format " \\\\\n", r->annee, nombre_couple(r));
     }
 }
 
